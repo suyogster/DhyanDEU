@@ -8,8 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,8 +16,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.util.Locale;
-import javax.xml.validation.Validator;
+
 
 public class Timer extends AppCompatActivity implements DialogInterface.OnClickListener{
 
@@ -69,7 +68,6 @@ public class Timer extends AppCompatActivity implements DialogInterface.OnClickL
         });
 
         //Timer Clock!
-
         Button button3 = findViewById(R.id.timer_add_button);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +78,12 @@ public class Timer extends AppCompatActivity implements DialogInterface.OnClickL
                 AlertDialog.Builder builder = new AlertDialog.Builder(Timer.this);
                 builder.setTitle("Please enter the time");
                 builder.setView(R.layout.timer_input);
-                builder.setPositiveButton("OK",null);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(Timer.this, "You clicked on this button ", Toast.LENGTH_LONG).show();
+                    }
+                });
                 builder.setNegativeButton("Cacel",null);
                 builder.show();
             }
