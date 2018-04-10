@@ -26,11 +26,11 @@
     <TextView
         android:id="@+id/text_view_countdown"
         android:layout_width="126dp"
-        android:layout_height="30dp"
+        android:layout_height="50dp"
         android:layout_above="@+id/timer_add_button"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="46dp"
-        android:text="00:00"
+        android:text="0000"
         android:textAlignment="center"
         android:textColor="@android:color/primary_text_dark"
         android:textSize="20dp"

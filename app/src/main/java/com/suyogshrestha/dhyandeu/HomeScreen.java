@@ -44,6 +44,15 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
+        CardView taskprogress = findViewById(R.id.ListProgress);
+        taskprogress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeScreen.this,GraphGeneration.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     }

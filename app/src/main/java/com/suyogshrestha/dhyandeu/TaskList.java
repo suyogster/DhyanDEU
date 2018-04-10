@@ -40,40 +40,44 @@ public class TaskList extends AppCompatActivity {
 
         adapter = new ArrayAdapter<String>(TaskList.this,android.R.layout.simple_list_item_1,itemList);
 
-        View.OnClickListener addListener = new View.OnClickListener(){
 
 
-            @Override
-            public void onClick(View v) {
-
-                itemList.add(itemText.getText().toString());
-                itemText.setText("");
-                adapter.notifyDataSetChanged();
-            }
-        };
-
-        addButton.setOnClickListener(addListener);
-        listView.setAdapter(adapter);
+            View.OnClickListener addListener = new View.OnClickListener() {
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(TaskList.this,Timer.class);
-                startActivity(intent);
-            }
-        });
+                @Override
+                public void onClick(View v) {
 
-        listView.setAdapter(adapter);
+                    itemList.add(itemText.getText().toString());
 
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                itemList.remove(position);
-                adapter.notifyDataSetChanged();
-                return true;
-            }
-        });
+                    itemText.setText("");
+                    adapter.notifyDataSetChanged();
+                }
+            };
+
+            addButton.setOnClickListener(addListener);
+            listView.setAdapter(adapter);
+
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(TaskList.this, Timer.class);
+                    startActivity(intent);
+                }
+            });
+
+            listView.setAdapter(adapter);
+
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                    itemList.remove(position);
+                    adapter.notifyDataSetChanged();
+                    return true;
+                }
+            });
+
     }
 
 
