@@ -1,6 +1,7 @@
 package com.suyogshrestha.dhyandeu;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
+
 
 
 public class TaskList extends AppCompatActivity {
@@ -26,6 +29,7 @@ public class TaskList extends AppCompatActivity {
     ListView listView;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,37 +37,38 @@ public class TaskList extends AppCompatActivity {
 
 
         listView = findViewById(R.id.TaskListView);
-        itemText = (EditText)findViewById(R.id.editasklist);
         addButton = findViewById(R.id.addtaskbutton);
+        itemText = findViewById(R.id.editasklist);
 
         itemList = new ArrayList<>();
 
         adapter = new ArrayAdapter<String>(TaskList.this,android.R.layout.simple_list_item_1,itemList);
 
 
-
+                //Add button Listener
             View.OnClickListener addListener = new View.OnClickListener() {
-
-
                 @Override
                 public void onClick(View v) {
 
-                    itemList.add(itemText.getText().toString());
+                        itemList.add(itemText.getText().toString());
 
-                    itemText.setText("");
-                    adapter.notifyDataSetChanged();
+                        itemText.setText("");
+
+                        adapter.notifyDataSetChanged();
                 }
             };
 
-            addButton.setOnClickListener(addListener);
+
+            addButton.setOnClickListener(addListener); //addListener setting to addButton
+
+
             listView.setAdapter(adapter);
-
-
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent intent = new Intent(TaskList.this, Timer.class);
                     startActivity(intent);
+
                 }
             });
 
@@ -77,6 +82,8 @@ public class TaskList extends AppCompatActivity {
                     return true;
                 }
             });
+
+
 
     }
 

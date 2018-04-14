@@ -2,6 +2,7 @@ package com.suyogshrestha.dhyandeu;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
@@ -18,12 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 
 public class Timer extends AppCompatActivity{
 
-    private final static long START_TIME_IN_MILLIS = 600000;
+    private final static long START_TIME_IN_MILLIS = 20000;
     private TextView mTextViewCountDown;
     private EditText mTimerInput;
     private Button mButtonStartPause;
@@ -40,6 +42,16 @@ public class Timer extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
+        //Timer to Graph
+        Button timer_graph_button = findViewById(R.id.Timer_Graph);
+        timer_graph_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Timer.this,GraphGeneration.class);
+                startActivity(intent);
+            }
+        });
+
         //Button Activity
         Button Circular_button = (Button) findViewById(R.id.Circular_button);
         final TextView textView = (TextView) findViewById(R.id.textView);
@@ -55,13 +67,19 @@ public class Timer extends AppCompatActivity{
             public void onClick(View view) {
                 int random = (int) (Math.random() * messages.length);
                 textView.setText(messages[random]);
-                Counter ++;
-                Toast.makeText(getApplicationContext(),"Distraction times: " + Counter ,Toast.LENGTH_LONG).show();
+
+                if(mTimerRunning){
+
+                    Counter ++;
+                    Toast.makeText(getApplicationContext(),"Distraction times: " + Counter ,Toast.LENGTH_SHORT).show();
+                }
+
 
 
             }
 
         });
+
 
 
         Circular_button.setOnTouchListener(new View.OnTouchListener() {
@@ -104,6 +122,7 @@ public class Timer extends AppCompatActivity{
         mButtonStartPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (mTimerRunning) {
                     pauseTimer();
                 } else {
@@ -116,7 +135,7 @@ public class Timer extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 resetTimer();
-                Toast.makeText(getApplicationContext(),"Distraction Counter Reset!",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Distraction Counter Reset!",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -125,7 +144,7 @@ public class Timer extends AppCompatActivity{
 
 
     private void startTimer() {
-        ResetCounter();
+
         mCountDownTimer = new CountDownTimer(mTimeLeftInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -139,6 +158,8 @@ public class Timer extends AppCompatActivity{
                 mButtonStartPause.setText("Start");
                 mButtonStartPause.setVisibility(View.INVISIBLE);
                 mButtonReset.setVisibility(View.VISIBLE);
+                Toast.makeText(getApplicationContext(),"Task Completed, Well done!",Toast.LENGTH_SHORT).show();
+
             }
         }.start();
 
@@ -174,6 +195,11 @@ public class Timer extends AppCompatActivity{
 
         Counter = 0;
     }
+
+    private void UpdateCounter(){
+        Counter++;
+    }
+
 
 /*        @Override
         public void onClick(DialogInterface dialog, int which) {

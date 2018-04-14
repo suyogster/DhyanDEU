@@ -7,10 +7,12 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.user.piecharttutorial.MainActivity">
+    android:background="@color/bluegrey"
+    tools:context="com.suyogshrestha.dhyandeu.GraphGeneration">
 
     <com.github.mikephil.charting.charts.PieChart
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/idPieChart"></com.github.mikephil.charting.charts.PieChart>
+        android:id="@+id/idPieChart">
+    </com.github.mikephil.charting.charts.PieChart>
 </RelativeLayout>

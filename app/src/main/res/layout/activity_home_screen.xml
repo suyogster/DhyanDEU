@@ -16,7 +16,7 @@
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collappsingtoolbar"
-            app:title="Focus Better"
+            app:title="DhyanDEU"
             app:expandedTitleTextAppearance="@color/transparent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
